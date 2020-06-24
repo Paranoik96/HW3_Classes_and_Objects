@@ -49,11 +49,11 @@ public class Car {
                     System.out.println("CHANGE your Current Speed to 0 for safety stop! ");
                 }
                 speed = 0;
+                System.out.println("Engine is stopped.");
             }
         } else {
             System.out.println("Engine does not work.");
         }
-
     }
 
     protected void moveVehicle(int wantedSpeed) {
