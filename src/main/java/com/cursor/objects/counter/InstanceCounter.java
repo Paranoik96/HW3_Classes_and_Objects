@@ -1,10 +1,10 @@
-package com.cursor.objects;
+package com.cursor.objects.counter;
 
-public class CountInstance {
+public class InstanceCounter {
 
     private static int counter;
 
-    public CountInstance() {
+    public InstanceCounter() {
         counter++;
     }
     public static int getNumOfInstance(){

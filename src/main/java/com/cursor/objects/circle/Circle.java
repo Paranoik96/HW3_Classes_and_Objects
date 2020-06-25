@@ -1,4 +1,4 @@
-package com.cursor.objects;
+package com.cursor.objects.circle;
 
 import java.util.Scanner;
 

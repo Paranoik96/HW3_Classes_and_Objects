@@ -1,6 +1,5 @@
-package com.cursor.objects;
+package com.cursor.objects.car;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Car {
@@ -20,44 +19,46 @@ public class Car {
         return speed;
     }
 
-    public boolean isEngineStart() {
-        return engineStart;
+    static class MyScanner {
+        private static final Scanner scan = new Scanner(System.in);
+
+        private MyScanner() {
+        }
+
+        public static Scanner getInstance() {
+            return scan;
+        }
     }
 
-    public void setEngineStart(boolean engineStart) {
-        this.engineStart = engineStart;
-    }
-
-    protected void start() {
-        if (isEngineStart()) {
+    public void start() {
+        if (engineStart) {
             System.out.println("Engine is already working.");
         } else {
-            setEngineStart(true);
+            engineStart = true;
             System.out.println("Ignition on, Engine starts working.");
         }
     }
 
-    protected void stop() {
-        Scanner sc = new Scanner(System.in);
-        if (isEngineStart()) {
+    public void stop() {
+        if (engineStart) {
             if (getSpeed() == 0) {
-                setEngineStart(false);
-                System.out.println("Engine is stopped.");
+                engineStart = false;
+                System.out.println("Vehicle is stopped.");
             } else {
                 System.out.println("Change your Current Speed to 0 for safety stop! ");
-                while (sc.nextInt() != 0){
+                while (MyScanner.getInstance().nextInt() != 0) {
                     System.out.println("CHANGE your Current Speed to 0 for safety stop! ");
                 }
                 speed = 0;
-                System.out.println("Engine is stopped.");
+                System.out.println("Vehicle stopped.");
             }
         } else {
             System.out.println("Engine does not work.");
         }
     }
 
-    protected void moveVehicle(int wantedSpeed) {
-        if (isEngineStart()) {
+    public void moveVehicle(int wantedSpeed) {
+        if (engineStart) {
             if (wantedSpeed > 0) {
                 speed = wantedSpeed;
                 System.out.println("Current speed is :" + getSpeed());
@@ -65,7 +66,7 @@ public class Car {
                 System.out.println("Vehicle not moving.");
             }
         } else {
-            System.out.println("Engine is does not work.");
+            System.out.println("Engine does not work.");
         }
     }
 }
